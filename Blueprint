@@ -1,0 +1,412 @@
+# FLOWPILOT
+## Project Blueprint & Functional Requirements Document
+
+**Project Name:** FlowPilot  
+**Project Type:** Multi-Tenant Workflow Automation & Approval Management Platform  
+**Architecture:** MERN Stack  
+**Document Version:** 1.0
+
+---
+
+# 1. Project Overview
+
+FlowPilot is a multi-tenant workflow automation and approval management platform designed to help organizations digitize, automate and manage their internal business processes.
+
+Organizations frequently handle internal processes such as leave requests, expense reimbursements, purchase approvals, document verification and employee onboarding manually through emails, spreadsheets and messaging applications.
+
+These manual processes often result in delays, communication gaps, misplaced requests and a lack of accountability.
+
+FlowPilot solves this problem by providing a centralized platform where organizations can define workflows, submit requests, assign approval responsibilities, automate workflow progression and monitor every activity.
+
+**Core Concept:**
+
+Define a workflow once → Execute it whenever required → Automate approval stages → Track the entire process.
+
+# 2. Main Objectives
+
+1. Allow organizations to create and manage their own workspaces.
+2. Enable organizations to define customized business workflows.
+3. Allow employees to submit requests through predefined workflows.
+4. Automatically route requests to the appropriate approvers.
+5. Allow authorized users to approve or reject requests.
+6. Maintain a complete history of workflow activities.
+7. Provide real-time visibility into pending and completed requests.
+8. Ensure that each organization's data remains isolated.
+
+# 3. User Roles & Responsibilities
+
+## 3.1 System Admin
+
+The System Admin manages the overall FlowPilot platform.
+
+Responsibilities:
+- Monitor registered organizations.
+- View platform-wide statistics.
+- Manage platform users and organizations.
+- Monitor overall platform activity.
+
+## 3.2 Organization Admin
+
+The Organization Admin manages an individual organization's workspace.
+
+Responsibilities:
+- Manage organization members.
+- Create and configure workflows.
+- Assign approval responsibilities.
+- Monitor all organization workflows.
+- View organization-wide reports.
+
+## 3.3 Employee / Regular User
+
+Regular users interact with workflows within their organization.
+
+Responsibilities:
+- View available workflows.
+- Submit workflow requests.
+- View their submitted requests.
+- Track request progress.
+- View approval history and final decisions.
+
+## 3.4 Approver
+
+An approver is a user assigned responsibility for a particular approval stage.
+
+Responsibilities:
+- View assigned pending requests.
+- Review request details.
+- Approve or reject requests.
+- Provide comments or rejection reasons.
+- View previous approval activities.
+
+# 4. Multi-Tenant Architecture
+
+FlowPilot supports multiple independent organizations using a single application.
+
+Example:
+
+- Organization A – ABC Technologies
+- Organization B – XYZ Solutions
+- Organization C – NextGen Innovations
+
+Each organization receives its own workspace.
+
+Every organization has:
+- Its own members.
+- Its own workflows.
+- Its own requests.
+- Its own approval configurations.
+- Its own activity history.
+
+**Important:** Organization A must never be able to access Organization B's private information.
+
+# 5. Core Modules
+
+## Module 1: Authentication & Authorization
+
+- User registration.
+- User login and logout.
+- Password hashing.
+- JWT-based authentication.
+- Role-based access control.
+- Organization membership verification.
+
+## Module 2: Organization Management
+
+- Create an organization.
+- Automatically create a default workspace during registration.
+- Assign the creator as Organization Owner/Admin.
+- Invite or add organization members.
+- Manage member roles.
+
+## Module 3: Workflow Management
+
+Organization Admins can create workflows.
+
+Each workflow contains:
+- Workflow name.
+- Description.
+- Category.
+- Request form fields.
+- Approval stages.
+- Assigned approvers.
+- Workflow status (Active/Inactive).
+
+Example workflows:
+- Leave Application.
+- Expense Reimbursement.
+- Purchase Request.
+- Document Approval.
+- Employee Onboarding.
+
+## Module 4: Workflow Execution
+
+This is the heart of FlowPilot.
+
+When an employee submits a request:
+
+1. The system identifies the selected workflow.
+2. A new workflow request is created.
+3. The request enters its first approval stage.
+4. The assigned approver receives the request.
+5. The approver reviews the information.
+6. If approved, the request moves to the next stage.
+7. If rejected, the workflow terminates with a rejected status.
+8. When all stages are approved, the workflow is marked as completed.
+
+## Module 5: Approval Management
+
+Approvers can:
+- View pending approvals.
+- Open individual requests.
+- Review submitted information.
+- Approve requests.
+- Reject requests.
+- Add comments.
+
+Approval decisions must be recorded with the approver, timestamp and decision.
+
+## Module 6: Request Tracking & History
+
+Users can track:
+- Submitted requests.
+- Pending requests.
+- Approved requests.
+- Rejected requests.
+- Current approval stage.
+- Previous approval decisions.
+- Complete workflow timeline.
+
+## Module 7: Dashboard & Analytics
+
+### Employee Dashboard
+- Total submitted requests.
+- Pending requests.
+- Approved requests.
+- Rejected requests.
+- Recent activity.
+
+### Organization Admin Dashboard
+- Total workflows.
+- Total requests.
+- Pending approvals.
+- Completed workflows.
+- Rejected requests.
+- Organization activity.
+
+### System Admin Dashboard
+- Total organizations.
+- Total registered users.
+- Total workflows.
+- Platform-wide request statistics.
+
+# 6. Workflow Lifecycle
+
+Every workflow request follows a defined lifecycle.
+
+**DRAFT → SUBMITTED → IN PROGRESS → APPROVED / REJECTED**
+
+Detailed behaviour:
+
+- DRAFT: Request is being prepared.
+- SUBMITTED: Request has been submitted.
+- IN PROGRESS: Waiting for approval at one of the configured stages.
+- APPROVED: All approval stages have been completed successfully.
+- REJECTED: An authorized approver has rejected the request.
+
+The system must maintain a record of every stage transition.
+
+# 7. Practical Workflow Example
+
+### Employee Leave Request
+
+Consider an organization with three approval stages:
+
+**Stage 1: Manager Approval**
+- Employee submits a leave request.
+- Manager reviews the request.
+- Manager approves or rejects it.
+
+**Stage 2: Department Head Approval**
+- If the manager approves, the request moves to the department head.
+- Department head reviews and makes a decision.
+
+**Stage 3: HR Approval**
+- If the department head approves, HR receives the request.
+- HR provides the final approval.
+
+**Final Result:**
+- If every stage is approved, the request becomes APPROVED.
+- If any stage rejects it, the request becomes REJECTED.
+
+Every decision is stored in the request history.
+
+# 8. Technology Stack
+
+The application will be developed entirely using the MERN stack.
+
+| Layer | Technology |
+|---|---|
+| Frontend | React.js |
+| Build Tool | Vite |
+| UI Framework | Material UI |
+| Backend | Node.js |
+| Backend Framework | Express.js |
+| Database | MongoDB |
+| ODM | Mongoose |
+| Authentication | JWT |
+| Password Security | bcrypt |
+| API Requests | Axios |
+| Frontend Routing | React Router |
+| State Management | React Context API |
+
+# 9. High-Level System Architecture
+
+React Frontend
+↓
+Express REST API
+↓
+Authentication & Authorization Middleware
+↓
+Workflow Execution & Approval Logic
+↓
+Mongoose Models
+↓
+MongoDB Database
+
+All protected API operations must validate the authenticated user and their organization permissions.
+
+# 10. Important Database Entities
+
+The initial MongoDB data models will include:
+
+1. **User**
+   - Name
+   - Email
+   - Password
+   - System Role
+
+2. **Organization**
+   - Organization Name
+   - Owner
+   - Created Date
+
+3. **OrganizationMember**
+   - User ID
+   - Organization ID
+   - Organization Role
+
+4. **Workflow**
+   - Organization ID
+   - Name
+   - Description
+   - Form Configuration
+   - Approval Stages
+   - Status
+
+5. **WorkflowRequest**
+   - Organization ID
+   - Workflow ID
+   - Submitted By
+   - Request Data
+   - Current Stage
+   - Status
+
+6. **Approval**
+   - Request ID
+   - Stage
+   - Assigned Approver
+   - Decision
+   - Comments
+   - Decision Timestamp
+
+7. **ActivityLog**
+   - Organization ID
+   - User ID
+   - Action
+   - Request ID
+   - Timestamp
+
+# 11. Security Requirements
+
+- Passwords must never be stored as plain text.
+- JWT authentication must protect private APIs.
+- Role-based permissions must be enforced on the backend.
+- Every organization-specific operation must enforce organization-level data isolation.
+- Users cannot approve requests assigned to other users unless explicitly authorized.
+- Only authorized administrators can configure workflows.
+- Approval history must preserve accountability.
+
+# 12. MVP Development Scope
+
+The first release will focus on the essential working features.
+
+### Must Have
+- Authentication and authorization.
+- Organization registration and workspace creation.
+- Organization member management.
+- Workflow creation.
+- Configurable approval stages.
+- Workflow request submission.
+- Sequential approval processing.
+- Approve and reject functionality.
+- Request tracking and history.
+- Employee and Admin dashboards.
+
+### Future Enhancements
+- Email notifications.
+- Drag-and-drop workflow builder.
+- Conditional approval rules.
+- Parallel approvals.
+- Workflow scheduling.
+- Third-party integrations.
+- Advanced analytics.
+- PDF report generation.
+
+# 13. Development Strategy
+
+The project will be implemented in two major development phases.
+
+**Night 1 – Backend**
+- MERN backend setup.
+- MongoDB connection.
+- Database models.
+- Authentication.
+- Organization management.
+- Workflow management APIs.
+- Workflow execution engine.
+- Approval APIs.
+
+**Night 2 – Frontend**
+- Authentication screens.
+- Dashboard layout.
+- Workflow management UI.
+- Request submission interface.
+- Pending approvals interface.
+- Admin dashboard.
+- API integration.
+- End-to-end testing.
+
+# 14. Definition of Success
+
+FlowPilot's MVP will be considered functional when the following scenario works completely:
+
+1. An organization registers.
+2. Its owner creates a workflow with multiple approval stages.
+3. An employee submits a request.
+4. The first assigned approver receives the request.
+5. The approver approves it.
+6. The request automatically moves to the next stage.
+7. The final approver approves it.
+8. The request becomes APPROVED.
+9. The employee can see the final status.
+10. The complete approval history is available.
+
+The same process must also support rejection at any approval stage.
+
+---
+
+# FINAL PRODUCT VISION
+
+**FlowPilot – Automate Your Workflow. Simplify Every Approval.**
+
+FlowPilot aims to eliminate manual coordination in organizational processes by bringing workflow creation, request execution, approval management and process tracking into one centralized platform.
