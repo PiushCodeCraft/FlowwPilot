@@ -12,9 +12,7 @@ import PendingApprovalsPage from "./pages/approvals/PendingApprovalsPage";
 import ActivityPage from "./pages/activity/ActivityPage";
 import SettingsPage from "./pages/settings/SettingsPage";
 
-function ComingSoon() {
-  return <h2>This FlowPilot module is coming soon.</h2>;
-}
+
 
 function App() {
   return (
