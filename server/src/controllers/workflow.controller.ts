@@ -16,7 +16,7 @@ const getId = (value: string | string[] | undefined): string | null => {
 };
 
 const canManageWorkflows = (role?: string): boolean =>
-  role === "OWNER" || role === "ADMIN";
+  role === "OWNER";
 
 const validateApprovers = async (
   organizationId: string,

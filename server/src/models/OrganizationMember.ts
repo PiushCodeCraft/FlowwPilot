@@ -4,7 +4,7 @@ import mongoose, { Schema, Document, Types } from "mongoose";
 export interface IOrganizationMember extends Document {
   user: Types.ObjectId;
   organization: Types.ObjectId;
-  role: "OWNER" | "ADMIN" | "MEMBER";
+  role: "OWNER" | "MEMBER";
   status: "ACTIVE" | "INVITED" | "INACTIVE";
   joinedAt?: Date;
   createdAt: Date;
@@ -28,7 +28,7 @@ const organizationMemberSchema =
 
       role: {
         type: String,
-        enum: ["OWNER", "ADMIN", "MEMBER"],
+        enum: ["OWNER", "MEMBER"],
         default: "MEMBER",
       },
 

@@ -252,8 +252,7 @@ export const getApprovalHistory = async (
 // Members can view history for requests they submitted
 // or requests assigned to them for approval.
 if (
-  req.organizationRole !== "OWNER" &&
-  req.organizationRole !== "ADMIN"
+  req.organizationRole !== "OWNER"
 ) {
   const isSubmitter =
     String(workflowRequest.submittedBy) === String(req.userId);

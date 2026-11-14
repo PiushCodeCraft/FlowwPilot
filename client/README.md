@@ -285,3 +285,23 @@ Do not ignore build failures before committing changes.
 
 **FlowPilot Client** --- frontend for the FlowPilot workflow and
 approval platform.
+
+
+## Demo Login Credentials
+
+### 1. Organization Owner
+
+- **Email:** piush@example.com
+- **Password:** StrongPassword123
+- **Role:** OWNER
+- **Organization:** FlowPilot Demo
+
+### 2. HR Manager
+
+- **Email:** hr@flowpilot.com
+- **Password:** [Add confirmed password]
+- **Role:** MEMBER
+- **Organization:** FlowPilot Demo
+
+> Demo passwords should be shared securely and must not be
+> committed to the repository.

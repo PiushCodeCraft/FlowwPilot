@@ -7,7 +7,7 @@ import OrganizationMember from "../models/OrganizationMember";
 
 export interface OrganizationRequest extends AuthRequest {
   organizationId?: string;
-  organizationRole?: "OWNER" | "ADMIN" | "MEMBER";
+  organizationRole?: "OWNER" | "MEMBER";
 }
 
 export const requireOrganization = async (
@@ -106,8 +106,7 @@ export const requireOrganizationAdmin = (
   next: NextFunction
 ): void => {
   if (
-    req.organizationRole !== "OWNER" &&
-    req.organizationRole !== "ADMIN"
+    req.organizationRole !== "OWNER" 
   ) {
     res.status(403).json({
       success: false,

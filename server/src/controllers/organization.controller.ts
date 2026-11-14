@@ -193,13 +193,12 @@ export const addOrganizationMember = async (
       return;
     }
 
-    if (!["ADMIN", "MEMBER"].includes(role)) {
-      res.status(400).json({
-        success: false,
-        message: "Role must be ADMIN or MEMBER",
-      });
-      return;
-    }
+if (role !== "MEMBER") {
+   res.status(400).json({
+    success: false,
+    message: "Only MEMBER role can be assigned",
+  });
+}
 
     const user = await User.findOne({
       email: email.trim().toLowerCase(),

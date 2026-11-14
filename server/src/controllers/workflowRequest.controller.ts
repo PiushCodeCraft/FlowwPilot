@@ -200,8 +200,7 @@ export const getWorkflowRequests = async (
     // Owners and admins can see all requests.
     // Members can see requests they submitted or were assigned to approve.
     if (
-      req.organizationRole !== "OWNER" &&
-      req.organizationRole !== "ADMIN"
+      req.organizationRole !== "OWNER"
     ) {
       filter.$or = [
         { submittedBy: userId },
@@ -328,8 +327,7 @@ export const getWorkflowRequestById = async (
     };
 
     if (
-      req.organizationRole !== "OWNER" &&
-      req.organizationRole !== "ADMIN"
+      req.organizationRole !== "OWNER"
     ) {
       filter.$or = [
         { submittedBy: req.userId },
